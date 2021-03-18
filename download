@@ -1,0 +1,8 @@
+#!/bin/bash
+cd /tmp
+mkdir -p ~/.config/rclone
+echo "$rclone_config" > ~/.config/rclone/rclone.conf
+
+time rclone copy gdrive:/romccache.tar.gz /tmp -P
+time tar xf romccache.tar.gz
+rm -rf romccache.tar.gz

@@ -1,0 +1,10 @@
+#!/bin/bash
+cd /tmp
+
+curl -sL https://git.io/file-transfer | sh
+./transfer wet out/target/product/sakura/*sakura*.zip
+time rclone copy out/target/product/sakura/*sakura*.zip gdrive:/CompiledROM/ -P
+
+time tar --use-compress-program="pigz -k -1 " -cf romccache.tar.gz ccache
+
+time rclone copy romccache.tar.gz gdrive: -P

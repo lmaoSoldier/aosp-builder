@@ -1,12 +1,13 @@
 #!/bin/bash
 
+cd /tmp
 export CCACHE_DIR=/tmp/ccache
-sleep 2m # Lunch may need 2 minutes to start the build
 
-while : # Loop to check ccache and machine status every 1 minute
+while true
 do
 ccache -s
-echo ''
-top -b -i -n 1
-sleep 1m
+tar --use-compress-program="pigz -k -1 " -cf romccache.tar.gz ccache
+rclone copy romccache.tar.gz gdrive: -P
+rm -rf romccache.tar.gz
+sleep 15m
 done
