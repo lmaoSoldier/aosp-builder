@@ -1,22 +1,15 @@
 env:
-  rclone_config: "ENCRYPTED[e876c0577d9a189a52a20fb3c10e1a30c58997c790978ad2465355ecf334ead2eb20e2d559731e37cba24ae027c78981]"
-  git_cookies: "ENCRYPTED[4f4bbe72ec41e3a4e067d4a4570cab1756fb790f0aa631792b09072db4be17e7241fdee9bb03a5364e40282db14f8fe9]"
-  git_auth: "ENCRYPTED[21e66ee49d3ac1ccef7df1a5e87bb437f23695582cca855ceaa94c807b25506b04eaf5b358771cc9f22864078919ca7e]"
-
+  CIRRUS_CLONE_DEPTH: 1
 container:
   image: apon77/aosp:latest
-  cpu: 16
-  memory: 32G
+  cpu: 10
+  memory: 24G
 
 task:
     name: Rom Builder
     timeout_in: 120m
-    download_background_script:
-      - ./download
     sync_script:
       - ./sync
-    monitor_background_script:
-      - ./monitor
     build_script:
       - ./build
     upload_script:

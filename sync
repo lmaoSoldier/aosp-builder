@@ -1,13 +1,18 @@
 #!/bin/bash
+git config --global user.name "lmaoSoldier"
+git config --global user.email "hmoeeze@gmail.com"
 cd /tmp
 
 repo init --no-repo-verify --depth=1 -u https://github.com/PixelExperience/manifest -b eleven -g default,-device,-mips,-darwin,-notdefault
 
-echo "${git_cookies}" > ~/setup_cookies.sh
-bash ~/setup_cookies.sh
 
-git clone https://"${git_auth}"@gitlab.com/Sakura-Development/device_xiaomi_sakura device/xiaomi/sakura --depth=1
-git clone https://"${git_auth}"@gitlab.com/Sakura-Development/vendor_xiaomi_sakura vendor/xiaomi/sakura --depth=1
-git clone https://github.com/PixelExperience-Devices/kernel_xiaomi_rosy kernel/xiaomi/sakura --depth=1 ### just for headers lol
+git clone https://github.com/lmaoSoldier/device_xiaomi_lavender.git -b eleven device/xiaomi/lavender
+
+git clone https://github.com/lmaoSoldier/vendor_xiaomi_lavender.git -b eleven vendor/xiaomi/lavender
+
+git clone https://github.com/lmaoSoldier/device_xiaomi_sdm660-common.git -b eleven device/xiaomi/sdm660-common
+
+git clone https://github.com/lmaoSoldier/vendor_xiaomi_sdm660-common.git -b eleven vendor/xiaomi/sdm660-common
+git clone https://github.com/stormbreaker-project/kernel_xiaomi_lavender.git -b oldcam-eas kernel/xiaomi/sdm660
 
 repo sync -c --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync -j$(nproc --all)
